@@ -1,0 +1,346 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌌 ท้องฟ้าไล่สีม่วงดำ */
+body {
+  background: linear-gradient(to bottom, #4c1d95 0%, #1e1b4b 60%, #0f172a 100%);
+  color: white;
+  font-family: "Prompt", sans-serif;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+
+/* ✨ ดาวระยิบระยับ */
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: twinkle 3s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+.star:nth-child(odd) {
+  animation-delay: 1.5s;
+  font-size: 1.2rem;
+}
+
+.star:nth-child(3n) {
+  font-size: 1.8rem;
+  opacity: 0.6;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* 🌕 ดวงจันทร์ลอย */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 🌊 พื้นน้ำ (เต็มครึ่งล่างของจอ) */
+.wave-background {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55vh;
+  background: linear-gradient(to top, #1e3a8a, #1e40af, #3b82f6);
+  z-index: 0;
+}
+
+/* 🌊 คลื่นกระเพื่อมขึ้นลง */
+@keyframes waveFloat {
+  0% {
+    transform: translateY(10px);
+  }
+  25% {
+    transform: translateY(-35px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  75% {
+    transform: translateY(25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.wave-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300%;
+  height: 45vh;
+  background-repeat: repeat-x;
+  background-size: cover;
+  opacity: 0.8;
+  clip-path: path(
+    "M0,120 C300,180 600,80 900,120 C1200,160 1500,80 1800,120 L1800,400 L0,400 Z"
+  );
+}
+
+/* 🌈 สีคลื่น 3 ชั้น */
+.wave1 {
+  background: linear-gradient(to top, #3b82f6, #1e40af);
+  animation: waveFloat 5s ease-in-out infinite;
+}
+
+.wave2 {
+  background: linear-gradient(to top, #2563eb, #1e3a8a);
+  animation: waveFloat 6s ease-in-out infinite reverse;
+  opacity: 0.6;
+  bottom: -25px;
+}
+
+.wave3 {
+  background: linear-gradient(to top, #1d4ed8, #172554);
+  animation: waveFloat 7s ease-in-out infinite;
+  opacity: 0.5;
+  bottom: -45px;
+}
+
+/* 🎆 พลุเป็นเส้นกระจายวงกลม */
+/* 🎆 พลุวงกลมกระจายหลายทิศ */
+.firework {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: firework-explode 2s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes firework-explode {
+  0% {
+    box-shadow: none;
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 -60px currentColor, 42px -42px currentColor,
+      60px 0 currentColor, 42px 42px currentColor, 0 60px currentColor,
+      -42px 42px currentColor, -60px 0 currentColor, -42px -42px currentColor,
+      21px -60px currentColor, -21px 60px currentColor;
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+/* 🎨 สีพลุแต่ละดอก */
+.firework.red {
+  color: #f87171;
+  animation-delay: 0s;
+}
+.firework.yellow {
+  color: #facc15;
+  animation-delay: 0.8s;
+}
+.firework.blue {
+  color: #60a5fa;
+  animation-delay: 1.4s;
+}
+.firework.pink {
+  color: #f472b6;
+  animation-delay: 2s;
+}
+.firework.green {
+  color: #4ade80;
+  animation-delay: 2.6s;
+}
+
+.fireworks {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+@keyframes floatSideways {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  10% {
+    transform: translateY(-3px) translateX(15px);
+  }
+  25% {
+    transform: translateY(-5px) translateX(40px);
+  }
+  35% {
+    transform: translateY(-2px) translateX(30px);
+  }
+  50% {
+    transform: translateY(0) translateX(0);
+  }
+  60% {
+    transform: translateY(2px) translateX(-20px);
+  }
+  75% {
+    transform: translateY(4px) translateX(-40px);
+  }
+  85% {
+    transform: translateY(2px) translateX(-30px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes floatSmooth {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-5px) translateX(20px);
+  }
+  50% {
+    transform: translateY(0) translateX(0);
+  }
+  75% {
+    transform: translateY(5px) translateX(-20px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+.animate-float-krathong {
+  animation: floatSmooth 12s linear infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes floatWave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-20px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(0px) translateY(0px);
+  }
+  75% {
+    transform: translateX(20px) translateY(5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.animate-float-wave {
+  animation: floatWave 12s ease-in-out infinite;
+}
+
+@keyframes floatWaveFull {
+  0% {
+    transform: translateX(-50vw) translateY(0);
+  }
+  25% {
+    transform: translateX(-25vw) translateY(-15px);
+  }
+  50% {
+    transform: translateX(0) translateY(0);
+  }
+  75% {
+    transform: translateX(25vw) translateY(15px);
+  }
+  100% {
+    transform: translateX(50vw) translateY(0);
+  }
+}
+
+.animate-float-wave-full {
+  animation: floatWaveFull 40s ease-in-out infinite;
+}
+
+@keyframes floatForward {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50vh) translateX(0);
+    opacity: 0.8;
+  }
+}
+
+.animate-float-forward {
+  animation: floatForward 20s linear forwards;
+}
+
+
+@keyframes floatForwardWave {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-12.5vh) translateX(15px);
+  }
+  50% {
+    transform: translateY(-25vh) translateX(0);
+  }
+  75% {
+    transform: translateY(-37.5vh) translateX(-15px);
+  }
+  100% {
+    transform: translateY(-50vh) translateX(0);
+  }
+}
+
+.animate-float-wave {
+  animation: floatForwardWave 20s ease-in-out forwards;
+}
